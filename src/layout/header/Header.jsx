@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router'
-import Logo from '../../assets/images/argentBankLogo.png'
+import logo from '../../assets/images/argentBankLogo.png'
 import './Header.css'
 
 function Header() {
@@ -8,7 +8,7 @@ function Header() {
       <Link className="main-nav-logo main-nav-link" to="/">
         <img
           className="main-nav-logo-image"
-          src={Logo}
+          src={logo}
           alt="Argent Bank Logo"
         />
         <h1 className="sr-only">Argent Bank</h1>
