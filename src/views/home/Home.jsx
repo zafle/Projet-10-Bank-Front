@@ -26,7 +26,7 @@ function Home() {
     },
   ]
   return (
-    <>
+    <main className="main">
       <div className="hero">
         <section className="hero-content">
           <h2 className="sr-only">Promoted Content</h2>
@@ -48,7 +48,7 @@ function Home() {
           />
         ))}
       </section>
-    </>
+    </main>
   )
 }
 export default Home
