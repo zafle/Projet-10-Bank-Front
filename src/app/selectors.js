@@ -1,1 +1,2 @@
-export const getAuthSuccess = (state) => state.auth.success
+export const getAuthState = (state) => state.auth
+export const getUserState = (state) => state.user

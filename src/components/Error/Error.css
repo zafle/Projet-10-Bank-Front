@@ -1,0 +1,12 @@
+.main-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-text {
+  color: white;
+}
+.error-link {
+  color: #00bc77;
+}

@@ -1,20 +1,36 @@
-import { useSelector } from 'react-redux'
-import { getAuthSuccess } from '../../app/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAuthState, getUserState } from '../../app/selectors'
 import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 import { accounts } from '../../data/mock/mockAccounts'
 import Account from '../../components/account/Account'
 import './Profile.css'
+import { getUserProfile, userSlice } from '../../features/userSlice'
+import Loader from '../../components/loader/Loader'
+import Error from '../../components/Error/Error'
 
 function Profile() {
-  const authSuccess = useSelector(getAuthSuccess)
+  const { success, userToken } = useSelector(getAuthState)
+  const { firstName, lastName, loading, error } = useSelector(getUserState)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!authSuccess) {
+    if (!success) {
       navigate('/login', { replace: true })
+    } else {
+      dispatch(userSlice.actions.setLoading(true))
+      dispatch(getUserProfile(userToken))
     }
-  }, [authSuccess, navigate])
+  }, [success, navigate, userToken, dispatch])
+
+  if (loading) {
+    return <Loader />
+  }
+
+  if (error) {
+    return <Error />
+  }
 
   return (
     <main className="main bg-dark">
@@ -22,7 +38,7 @@ function Profile() {
         <h1>
           Welcome back
           <br />
-          Tony Jarvis!
+          {firstName} {lastName}
         </h1>
         <button className="edit-button">Edit Name</button>
       </div>

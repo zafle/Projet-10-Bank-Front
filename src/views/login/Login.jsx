@@ -1,32 +1,74 @@
-import { Link } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { useEffect } from 'react'
+import { getAuthState } from '../../app/selectors'
+import { authUser, authSlice } from '../../features/authSlice'
+import Loader from '../../components/loader/Loader'
 import './Login.css'
 
 function Login() {
+  const { loading, error, success, userName } = useSelector(getAuthState)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const username = e.currentTarget.username.value
+    const password = e.currentTarget.password.value
+    const remember = e.currentTarget.remember.checked
+
+    if (username !== '' && password !== '') {
+      dispatch(authSlice.actions.setFormError(''))
+      dispatch(authSlice.actions.setLoading(true))
+      dispatch(
+        authUser({
+          email: username,
+          password: password,
+          remember: remember ? username : '',
+        })
+      )
+    } else {
+      dispatch(authSlice.actions.setFormError('Please fill in all fields.'))
+    }
+  }
+
+  useEffect(() => {
+    if (success) {
+      navigate('/profile', { replace: true })
+    }
+  }, [success, navigate])
+
+  if (loading) {
+    return <Loader />
+  }
+
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" />
+            <input
+              type="text"
+              id="username"
+              name="username"
+              defaultValue={userName}
+            />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
+            <input type="password" id="password" name="password" />
           </div>
           <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
+            <input type="checkbox" id="remember-me" name="remember" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-          <Link to="./profile" className="sign-in-button">
+          {error !== '' && <div className="sign-in-form-error">{error}</div>}
+          <button type="submit" className="sign-in-button">
             Sign In
-          </Link>
-          {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-          {/* <!-- <button className="sign-in-button">Sign In</button> --> */}
-          {/* <!--  --> */}
+          </button>
         </form>
       </section>
     </main>
