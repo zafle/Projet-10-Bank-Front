@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
+import MainLayout from '../layout/mainlayout/MainLayout'
 import Home from '../views/home/Home'
 import Login from '../views/login/Login'
 import Profile from '../views/profile/Profile'
-import MainLayout from '../layout/mainlayout/MainLayout'
 import Logout from '../views/logout/Logout'
 
 function Router() {

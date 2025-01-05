@@ -1,8 +1,8 @@
 import { Link, NavLink } from 'react-router'
+import { useSelector } from 'react-redux'
+import { getAuthState, getUserState } from '../../redux/selectors'
 import logo from '../../assets/images/argentBankLogo.png'
 import './Header.css'
-import { getAuthState, getUserState } from '../../app/selectors'
-import { useSelector } from 'react-redux'
 
 function Header() {
   const { success } = useSelector(getAuthState)

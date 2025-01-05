@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { getAuthState, getUserState } from '../../app/selectors'
 import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
+import { getAuthState, getUserState } from '../../redux/selectors'
+import { getUserProfile, userSlice } from '../../redux/features/userSlice'
 import { accounts } from '../../data/mock/mockAccounts'
 import Account from '../../components/account/Account'
-import './Profile.css'
-import { getUserProfile, userSlice } from '../../features/userSlice'
 import Loader from '../../components/loader/Loader'
 import Error from '../../components/Error/Error'
+import './Profile.css'
 
 function Profile() {
   const { success, userToken } = useSelector(getAuthState)

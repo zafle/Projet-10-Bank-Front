@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
-import { getAuthState } from '../../app/selectors'
-import { authUser, authSlice } from '../../features/authSlice'
+import { getAuthState } from '../../redux/selectors'
+import { authUser, authSlice } from '../../redux/features/authSlice'
 import Loader from '../../components/loader/Loader'
 import './Login.css'
 

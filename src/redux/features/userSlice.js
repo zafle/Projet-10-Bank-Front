@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getProfile } from '../services/services'
+import { getProfile } from '../../services/services'
 
 const initialState = {
   email: '',

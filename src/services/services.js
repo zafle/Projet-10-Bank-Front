@@ -21,7 +21,6 @@ export async function logUser(userInfo) {
 }
 
 export async function getProfile(userToken) {
-  console.log('from servives getProfile', userToken)
   const config = {
     headers: {
       Accept: 'application/json',
