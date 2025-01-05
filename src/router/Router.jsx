@@ -4,6 +4,7 @@ import Home from '../views/home/Home'
 import Login from '../views/login/Login'
 import Profile from '../views/profile/Profile'
 import Logout from '../views/logout/Logout'
+import Error404 from '../views/error404/Error404'
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

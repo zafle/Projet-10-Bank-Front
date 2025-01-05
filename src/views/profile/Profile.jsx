@@ -6,7 +6,7 @@ import { getUserProfile, userSlice } from '../../redux/features/userSlice'
 import { accounts } from '../../data/mock/mockAccounts'
 import Account from '../../components/account/Account'
 import Loader from '../../components/loader/Loader'
-import Error from '../../components/Error/Error'
+import Error from '../../components/error/Error'
 import './Profile.css'
 
 function Profile() {
