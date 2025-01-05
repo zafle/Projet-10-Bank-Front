@@ -3,9 +3,7 @@ import { logUser } from '../services/services'
 
 const initialState = {
   loading: false,
-  // userFirstName: null,
-  // userLastName: null,
-  userToken: sessionStorage.getItem('userToken') || null,
+  userToken: sessionStorage.getItem('userToken') || '',
   error: '',
   success: sessionStorage.getItem('success') || false,
   userName: localStorage.getItem('userName') || '',
@@ -36,6 +34,12 @@ export const authSlice = createSlice({
     },
     setLoading(state, action) {
       state.loading = action.payload
+    },
+    logoutUser(state) {
+      state.userToken = ''
+      state.success = false
+      sessionStorage.removeItem('success')
+      sessionStorage.removeItem('userToken')
     },
   },
   extraReducers: (builder) => {

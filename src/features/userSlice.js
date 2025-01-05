@@ -13,14 +13,12 @@ const initialState = {
 export const getUserProfile = createAsyncThunk(
   'user/getUserProfile',
   async (token, { rejectWithValue }) => {
-    console.log('get user profile async thunk send with ', token)
     try {
       const response = await getProfile(token)
       return response
     } catch (error) {
       // return custom error message from API if present
       if (error.response && error.response.data.message) {
-        console.log(error)
         return rejectWithValue(error.response.data.message)
       } else {
         return rejectWithValue(error.message)
@@ -35,10 +33,12 @@ export const userSlice = createSlice({
     setLoading(state, action) {
       state.loading = action.payload
     },
+    resetUser(state) {
+      Object.assign(state, initialState)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUserProfile.fulfilled, (state, action) => {
-      console.log('getUserProfile.fulfilled', action.payload)
       state.email = action.payload.email
       state.firstName = action.payload.firstName
       state.lastName = action.payload.lastName

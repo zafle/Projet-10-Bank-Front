@@ -22,7 +22,7 @@ function Profile() {
       dispatch(userSlice.actions.setLoading(true))
       dispatch(getUserProfile(userToken))
     }
-  }, [success, navigate, userToken, dispatch])
+  }, [success, userToken, navigate, dispatch])
 
   if (loading) {
     return <Loader />

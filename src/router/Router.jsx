@@ -3,6 +3,7 @@ import Home from '../views/home/Home'
 import Login from '../views/login/Login'
 import Profile from '../views/profile/Profile'
 import MainLayout from '../layout/mainlayout/MainLayout'
+import Logout from '../views/logout/Logout'
 
 function Router() {
   return (
@@ -12,6 +13,7 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
