@@ -13,10 +13,10 @@ function Logout() {
 
   useEffect(() => {
     if (success) {
-      dispatch(userSlice.actions.resetUser())
-      console.log('user reset')
       dispatch(authSlice.actions.logoutUser())
       console.log('auth reset')
+      dispatch(userSlice.actions.resetUser())
+      console.log('user reset')
     }
     navigate('/', { replace: true })
   }, [success, navigate, dispatch])

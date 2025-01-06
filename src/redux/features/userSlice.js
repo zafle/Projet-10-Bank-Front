@@ -83,7 +83,6 @@ export const userSlice = createSlice({
       state.loading = false
     })
     builder.addCase(updateUserName.fulfilled, (state, action) => {
-      console.log('update name fulfilled', action.payload)
       state.firstName = action.payload.firstName
       state.lastName = action.payload.lastName
       state.update.loading = false

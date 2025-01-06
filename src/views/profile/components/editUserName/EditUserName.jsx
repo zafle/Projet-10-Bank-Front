@@ -18,7 +18,7 @@ function EditUserName() {
       dispatch(userSlice.actions.setUpdateSuccess(false))
       navigate('/profile', { replace: true })
     }
-  })
+  }, [update, dispatch, navigate])
 
   const handleCancel = () => {
     dispatch(userSlice.actions.setUpdateFormError(''))
