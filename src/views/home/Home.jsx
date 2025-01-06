@@ -1,5 +1,5 @@
 import Feature from '../../components/feature/Feature'
-import { homeFeatures } from '../../data/home/homeFeatures'
+import { homeFeatures } from '../../data/mock/homeFeatures'
 import './Home.css'
 
 function Home() {

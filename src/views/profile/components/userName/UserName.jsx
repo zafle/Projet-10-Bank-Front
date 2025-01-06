@@ -16,7 +16,7 @@ function UserName() {
       <h1>
         Welcome back
         <br />
-        {firstName} {lastName}
+        {firstName} {lastName}!
       </h1>
       <button className="edit-button" onClick={handleClick}>
         Edit Name
