@@ -4,9 +4,11 @@ html {
   text-align: center;
   color: #2c3e50;
 }
+
 body {
   margin: 0;
 }
+
 #root {
   display: flex;
   flex-direction: column;
@@ -33,4 +35,13 @@ body {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
+}
+
+button {
+  cursor: pointer;
+}
+
+button,
+input {
+  font-family: inherit;
 }

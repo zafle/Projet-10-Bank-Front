@@ -1,0 +1,29 @@
+.update-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.update-wrapper input {
+  padding: 9px;
+  font-size: 1.2rem;
+  border-radius: 2px;
+  border: none;
+}
+
+.update-button {
+  border-color: #00bc77;
+  background-color: white;
+  color: #00bc77;
+  font-weight: bold;
+  padding: 10px;
+  width: 120px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.update-error {
+  color: #f10cc0;
+  font-style: italic;
+}

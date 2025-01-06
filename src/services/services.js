@@ -6,7 +6,7 @@ export async function logUser(userInfo) {
   const config = {
     headers: {
       Accept: 'application/json',
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
     },
   }
   const response = await axios.post(
@@ -28,5 +28,24 @@ export async function getProfile(userToken) {
     },
   }
   const response = await axios.post(`${API_URL}user/profile`, {}, config)
+  return response.data.body
+}
+
+export async function updateName(data) {
+  const config = {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${data.userToken}`,
+      'Content-Type': 'application/json',
+    },
+  }
+  const response = await axios.put(
+    `${API_URL}user/profile`,
+    {
+      firstName: data.firstName,
+      lastName: data.lastName,
+    },
+    config
+  )
   return response.data.body
 }

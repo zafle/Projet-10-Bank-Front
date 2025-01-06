@@ -5,6 +5,8 @@ import Login from '../views/login/Login'
 import Profile from '../views/profile/Profile'
 import Logout from '../views/logout/Logout'
 import Error404 from '../views/error404/Error404'
+import EditUserName from '../views/profile/components/editUserName/EditUserName'
+import UserName from '../views/profile/components/userName/UserName'
 
 function Router() {
   return (
@@ -13,8 +15,11 @@ function Router() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route path="edit" element={<EditUserName />} />
+            <Route index element={<UserName />} />
+          </Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
       </MainLayout>
