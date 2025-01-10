@@ -42,9 +42,9 @@ function Profile() {
         <Account
           key={`${index}-userAccount`}
           type={account.type}
-          id={account.id}
-          amount={account.amount}
+          number={account.number}
           balance={account.balance}
+          balanceType={account.balanceType}
         />
       ))}
     </main>

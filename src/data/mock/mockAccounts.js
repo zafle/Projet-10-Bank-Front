@@ -1,20 +1,20 @@
 export const accounts = [
   {
     type: 'Checking',
-    id: 'x8349',
-    amount: 2082.79,
-    balance: 'Available',
+    number: 'x8349',
+    balance: 2082.79,
+    balanceType: 'Available',
   },
   {
     type: 'Savings',
-    id: 'x6712',
-    amount: 10928.42,
-    balance: 'Available',
+    number: 'x6712',
+    balance: 10928.42,
+    balanceType: 'Available',
   },
   {
     type: 'Credit Card',
-    id: 'x8349',
-    amount: 184.3,
-    balance: 'Current',
+    number: 'x8349',
+    balance: 184.3,
+    balanceType: 'Current',
   },
 ]
