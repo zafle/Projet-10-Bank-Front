@@ -3,10 +3,10 @@ import { logUser } from '../../services/services'
 
 const initialState = {
   loading: false,
-  userToken: sessionStorage.getItem('userToken') || '',
+  userToken: '',
   error: '',
-  success: sessionStorage.getItem('success') || false,
-  userName: localStorage.getItem('userName') || '',
+  success: false,
+  remember: '',
 }
 
 export const authUser = createAsyncThunk(
@@ -38,8 +38,6 @@ export const authSlice = createSlice({
     logoutUser(state) {
       state.userToken = ''
       state.success = false
-      sessionStorage.removeItem('success')
-      sessionStorage.removeItem('userToken')
     },
   },
   extraReducers: (builder) => {
@@ -49,9 +47,6 @@ export const authSlice = createSlice({
       state.error = ''
       state.success = true
       state.loading = false
-      sessionStorage.setItem('success', true)
-      sessionStorage.setItem('userToken', action.payload.token)
-      localStorage.setItem('userName', action.payload.remember)
     })
     builder.addCase(authUser.rejected, (state, action) => {
       state.error = action.payload

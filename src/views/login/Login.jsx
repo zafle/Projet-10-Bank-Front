@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 import { getAuthState } from '../../redux/selectors'
 import { authUser, authSlice } from '../../redux/features/authSlice'
+import { credentialSlice } from '../../redux/features/credentialSlice'
 import Loader from '../../components/loader/Loader'
 import './Login.css'
 
@@ -34,9 +35,10 @@ function Login() {
 
   useEffect(() => {
     if (success) {
+      userName !== '' && dispatch(credentialSlice.actions.setUserName(userName))
       navigate('/profile', { replace: true })
     }
-  }, [success, navigate])
+  }, [success, userName, navigate, dispatch])
 
   if (loading) {
     return <Loader />
