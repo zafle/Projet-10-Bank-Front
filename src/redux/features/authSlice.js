@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { logUser } from '../../services/services'
+import { logUser } from '../../services/callsApi'
 
 const initialState = {
   loading: false,
@@ -16,11 +16,14 @@ export const authUser = createAsyncThunk(
       const response = await logUser(userInfo)
       return { token: response, remember: userInfo.remember }
     } catch (error) {
-      // return custom error message from API if present
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message)
+      // return custom error message based on API response
+      if (error.response && error.response.data.status === 400) {
+        // return rejectWithValue('Invalid username or password')
+        return rejectWithValue('Invalid username or password')
       } else {
-        return rejectWithValue(error.message)
+        return rejectWithValue(
+          'Sorry, an internal error occured, try again later.'
+        )
       }
     }
   }

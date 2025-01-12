@@ -5,11 +5,12 @@ import { store, persistor } from './redux/store'
 import Router from './router/Router'
 import './index.css'
 import { PersistGate } from 'redux-persist/integration/react'
+import Loader from './components/loader/Loader'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={<Loader />} persistor={persistor}>
         <Router />
       </PersistGate>
     </Provider>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getProfile, updateName } from '../../services/services'
+import { getProfile, updateName } from '../../services/callsApi'
 
 const initialState = {
   email: '',

@@ -2,6 +2,20 @@ import axios from 'axios'
 
 const API_URL = 'http://localhost:3001/api/v1/'
 
+// Configurez un interceptor pour supprimer les logs des erreurs
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 400) {
+      // Ne rien afficher dans la console pour les erreurs 400
+      console.log('cette erreur est interceptée')
+      return Promise.reject(error) // Gère l'erreur sans log
+    }
+    console.log("cette erreur n'est pas interceptée")
+    return Promise.reject(error) // Propager les autres erreurs
+  }
+)
+
 export async function logUser(userInfo) {
   const config = {
     headers: {
