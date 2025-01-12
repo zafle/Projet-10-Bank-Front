@@ -17,7 +17,7 @@ function Profile() {
 
   useEffect(() => {
     if (!success) {
-      navigate('/login', { replace: true })
+      navigate('/', { replace: true })
     } else {
       dispatch(userSlice.actions.setLoading(true))
       dispatch(getUserProfile(userToken))

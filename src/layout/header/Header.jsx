@@ -1,12 +1,21 @@
 import { Link, NavLink } from 'react-router'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getAuthState, getUserState } from '../../redux/selectors'
+import { userSlice } from '../../redux/features/userSlice'
+import { authSlice } from '../../redux/features/authSlice'
 import logo from '../../assets/images/argentBankLogo.png'
 import './Header.css'
 
 function Header() {
   const { success } = useSelector(getAuthState)
   const { firstName } = useSelector(getUserState)
+
+  const dispatch = useDispatch()
+
+  function logout() {
+    dispatch(authSlice.actions.logoutUser())
+    dispatch(userSlice.actions.resetUser())
+  }
 
   return (
     <nav className="main-nav">
@@ -24,10 +33,10 @@ function Header() {
             <i className="fa fa-user-circle"></i>
             &nbsp;{firstName}
           </NavLink>
-          <NavLink className="main-nav-item" to="/logout">
+          <Link className="main-nav-item" onClick={logout}>
             <i className="fa fa-sign-out"></i>
             &nbsp;Sign Out
-          </NavLink>
+          </Link>
         </div>
       ) : (
         <div>
