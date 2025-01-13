@@ -18,7 +18,6 @@ export const authUser = createAsyncThunk(
     } catch (error) {
       // return custom error message based on API response
       if (error.response && error.response.data.status === 400) {
-        // return rejectWithValue('Invalid username or password')
         return rejectWithValue('Invalid username or password')
       } else {
         return rejectWithValue(

@@ -8,6 +8,7 @@ import Account from '../../components/account/Account'
 import Loader from '../../components/loader/Loader'
 import Error from '../../components/error/Error'
 import './Profile.css'
+import { logout } from '../../services/logout'
 
 function Profile() {
   const { success, userToken } = useSelector(getAuthState)
@@ -20,7 +21,12 @@ function Profile() {
       navigate('/', { replace: true })
     } else {
       dispatch(userSlice.actions.setLoading(true))
+      // logout user after 10 minutes of inaction
+      const logoutTimeout = setTimeout(logout, 600000, dispatch)
       dispatch(getUserProfile(userToken))
+
+      // clean timeout
+      return () => clearTimeout(logoutTimeout)
     }
   }, [success, userToken, navigate, dispatch])
 
