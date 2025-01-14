@@ -1,3 +1,4 @@
+// Mocked data for user's account
 export const accounts = [
   {
     type: 'Checking',

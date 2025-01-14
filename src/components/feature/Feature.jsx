@@ -1,5 +1,16 @@
-import './Feature.css'
 import PropTypes from 'prop-types'
+import './Feature.css'
+
+/**
+ * Renders a component showing a feature element
+ *
+ * @param {string} icon path to icon picture
+ * @param {string} iconAlt alt text for icon img tag
+ * @param {string} title feature title
+ * @param {string} text feature text
+ *
+ * @returns {React.ReactElement}
+ */
 
 function Feature({ icon, iconAlt, title, text }) {
   return (
@@ -10,6 +21,7 @@ function Feature({ icon, iconAlt, title, text }) {
     </div>
   )
 }
+
 Feature.propTypes = {
   icon: PropTypes.string.isRequired,
   iconAlt: PropTypes.string.isRequired,

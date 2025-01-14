@@ -2,6 +2,7 @@ import chatIcon from '../../assets/images//icon-chat.png'
 import moneyIcon from '../../assets/images//icon-money.png'
 import securityIcon from '../../assets/images/icon-security.png'
 
+// Data for home page features
 export const homeFeatures = [
   {
     icon: chatIcon,

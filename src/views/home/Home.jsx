@@ -2,6 +2,11 @@ import Feature from '../../components/feature/Feature'
 import { homeFeatures } from '../../data/mock/homeFeatures'
 import './Home.css'
 
+/**
+ * Renders Home page content
+ *
+ * @returns {React.ReactElement} Returns Home page content
+ */
 function Home() {
   return (
     <main className="main">

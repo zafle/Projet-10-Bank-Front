@@ -1,6 +1,17 @@
 import PropTypes from 'prop-types'
 import './Account.css'
 
+/**
+ * Displays a bloc that contains all account's supplied details
+ *
+ * @param {string} type account's type
+ * @param {string} number account's number
+ * @param {number} balance account's balance
+ * @param {number} balanceType account's balance type
+ *
+ * @returns {React.ReactElement} Returns a bloc that contains all account's supplied details
+ */
+
 function Account({ type, number, balance, balanceType }) {
   const accountAmount = new Intl.NumberFormat('en-US', {
     style: 'currency',

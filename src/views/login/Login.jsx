@@ -7,20 +7,30 @@ import { credentialSlice } from '../../redux/features/credentialSlice'
 import Loader from '../../components/loader/Loader'
 import './Login.css'
 
+/**
+ * Renders Login page content
+ *
+ * @returns {React.ReactElement} Returns Login page content
+ */
 function Login() {
+
+  // Retrieves some auth state values
   const { loading, error, success, userName } = useSelector(getAuthState)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  // Handles sign up submission form
   const handleSubmit = (e) => {
     e.preventDefault()
     const username = e.currentTarget.username.value
     const password = e.currentTarget.password.value
     const remember = e.currentTarget.remember.checked
 
+    // If all fields are filled in
     if (username !== '' && password !== '') {
       dispatch(authSlice.actions.setFormError(''))
       dispatch(authSlice.actions.setLoading(true))
+      // uses authUser Async Thunk
       dispatch(
         authUser({
           email: username,
@@ -33,9 +43,12 @@ function Login() {
     }
   }
 
+  // If user has logged in successfully
   useEffect(() => {
     if (success) {
+      // set username into state (persists in local storage)
       userName !== '' && dispatch(credentialSlice.actions.setUserName(userName))
+      // Navigate to profile page
       navigate('/profile', { replace: true })
     }
   }, [success, userName, navigate, dispatch])

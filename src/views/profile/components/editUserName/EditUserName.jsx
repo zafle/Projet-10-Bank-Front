@@ -6,32 +6,47 @@ import { updateUserName, userSlice } from '../../../../redux/features/userSlice'
 import Loader from '../../../../components/loader/Loader'
 import './EditUserName.css'
 
+/**
+ * Renders a form to edit user name
+ * Displays as Outlet on Profile page (/profile/edit)
+ *
+ * @returns {React.ReactElement} Returns a form to edit user name
+ */
 function EditUserName() {
+  //  Retrieve user data from Redux store
   const { userToken } = useSelector(getAuthState)
   const { firstName, lastName, update } = useSelector(getUserState)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  // If the update is a success, return to profile page
   useEffect(() => {
     if (update.success) {
+      // reset success state
       dispatch(userSlice.actions.setUpdateSuccess(false))
       navigate('/profile', { replace: true })
     }
   }, [update, dispatch, navigate])
 
+  // Function to handle Cancel button
   const handleCancel = () => {
+    // reset error message
     dispatch(userSlice.actions.setUpdateFormError(''))
+    // return to profile page (displays UserName Outlet)
     navigate('/profile', { replace: true })
   }
 
+  // Function to handle edit form submit
   const handleSubmit = (e) => {
     e.preventDefault()
     const firstName = e.currentTarget.firstName.value
     const lastName = e.currentTarget.lastName.value
 
+    // If all fields are filled in
     if (firstName !== '' && lastName !== '') {
       dispatch(userSlice.actions.setUpdateLoading(true))
+      //  use updateUserName Thunk to update data in database and in store
       dispatch(
         updateUserName({
           userToken: userToken,

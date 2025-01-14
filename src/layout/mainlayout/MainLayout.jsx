@@ -3,7 +3,7 @@ import Header from '../header/Header'
 import PropTypes from 'prop-types'
 
 /**
- * Renders main App layout React component with main Header and main Footer
+ * Renders App's main layout with main Header and main Footer
  *
  * @param {Object} props
  * @param {React.ReactNode} props.children - React components that will display inside the layout.
