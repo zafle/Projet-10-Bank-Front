@@ -15,18 +15,19 @@
 
 .account-amount {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .account-amount-description {
   margin: 0;
+  font-size: 0.9rem;
 }
 
 .account-title {
   margin: 0;
   padding: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: normal;
 }
 
@@ -50,6 +51,18 @@
 @media (min-width: 720px) {
   .account {
     flex-direction: row;
+  }
+
+  .account-title {
+    font-size: 1rem;
+  }
+
+  .account-amount {
+    font-size: 2.5rem;
+  }
+
+  .account-amount-description {
+    font-size: 1rem;
   }
 
   .account-content-wrapper.cta {

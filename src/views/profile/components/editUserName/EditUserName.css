@@ -5,11 +5,17 @@
   margin-bottom: 20px;
 }
 
+.update-wrapper:first-of-type {
+  flex-direction: column;
+}
+
 .update-wrapper input {
   padding: 9px;
   font-size: 1.2rem;
   border-radius: 2px;
   border: none;
+  width: 242px;
+  margin: 0 auto;
 }
 
 .update-button {
@@ -26,4 +32,14 @@
 .update-error {
   color: #f10cc0;
   font-style: italic;
+}
+
+@media (min-width: 580px) {
+  .update-wrapper:first-of-type {
+    flex-direction: row;
+  }
+
+  .update-wrapper input {
+    margin: 0;
+  }
 }

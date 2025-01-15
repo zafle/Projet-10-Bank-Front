@@ -17,7 +17,7 @@ function Feature({ icon, iconAlt, title, text }) {
     <div className="feature-item">
       <img src={icon} alt={iconAlt} className="feature-icon" />
       <h3 className="feature-item-title">{title}</h3>
-      <p>{text}</p>
+      <p className="feature-item-text">{text}</p>
     </div>
   )
 }

@@ -54,6 +54,7 @@
 .features {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 @media (min-width: 920px) {
