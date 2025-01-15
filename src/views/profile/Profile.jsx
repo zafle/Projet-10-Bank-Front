@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Outlet, useNavigate } from 'react-router'
+import { Outlet } from 'react-router'
 import { useEffect } from 'react'
 import { getAuthState, getUserState } from '../../redux/selectors'
 import { getUserProfile, userSlice } from '../../redux/features/userSlice'
@@ -20,29 +20,22 @@ import './Profile.css'
  * @returns {React.ReactElement} Returns profile page
  */
 function Profile() {
-  // Retrieve date from Store
-  const { success, userToken } = useSelector(getAuthState)
+  // Retrieve data from Store
+  const { userToken } = useSelector(getAuthState)
   const { loading, error } = useSelector(getUserState)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  // If user is not authentified (success = false)
-  // Return to Home Page
   useEffect(() => {
-    if (!success) {
-      navigate('/', { replace: true })
-    } else {
-      dispatch(userSlice.actions.setLoading(true))
-      // logout user after 10 minutes of inaction
-      const logoutTimeout = setTimeout(logout, 600000, dispatch)
-      // Get user profile infos from API with getUserProfile Thunk
-      dispatch(getUserProfile(userToken))
+    dispatch(userSlice.actions.setLoading(true))
+    // logout user after 10 minutes of inaction
+    const logoutTimeout = setTimeout(logout, 600000, dispatch)
+    // Get user profile infos from API with getUserProfile Thunk
+    dispatch(getUserProfile(userToken))
 
-      // clean timeout when component is dismounted
-      return () => clearTimeout(logoutTimeout)
-    }
-  }, [success, userToken, navigate, dispatch])
+    // clean timeout when component is dismounted
+    return () => clearTimeout(logoutTimeout)
+  }, [userToken, dispatch])
 
   if (loading) {
     return <Loader />

@@ -33,3 +33,5 @@ export const getAuthState = (state) => state.auth
  * >} Returns user infos state
  */
 export const getUserState = (state) => state.user
+
+export const getCredentialState = (state) => state.credential

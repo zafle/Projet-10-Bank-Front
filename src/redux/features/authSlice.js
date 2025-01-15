@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { logUser } from '../../services/callsApi'
+import { credentialSlice } from './credentialSlice'
 
 /**
  * User authentification Slice of Redux Store
@@ -13,7 +14,6 @@ const initialState = {
   userToken: '', // JWT returned fromAPI when user has been authentified successfully
   error: '', // Error message to display on sign up form
   success: false, // true when user is logged
-  remember: '', // username to remember if user checks the "Remember me" field when signing up
 }
 
 /**
@@ -26,7 +26,7 @@ export const authUser = createAsyncThunk(
    * - uses call API Axios function
    *
    * @param {Object} userInfo contains data from sign up form
-   * @param {string} userInfo.userName username
+   * @param {string} userInfo.email username
    * @param {string} userInfo.password password
    * @param {string} userInfo.remember username | '' (empty if "Remember me" is not checked)
    *
@@ -34,11 +34,13 @@ export const authUser = createAsyncThunk(
    * @returns {Promise.resolve<Object.< token: string, remember: string>>} Returns JWT and userName or empty string to remember
    * @returns {Promise.reject<string>} Error message to display
    */
-  async (userInfo, { rejectWithValue }) => {
+  async (userInfo, { rejectWithValue, dispatch }) => {
     try {
-      // call API Axios function
-      const response = await logUser(userInfo)
-      return { token: response, remember: userInfo.remember }
+      // call API Axios function to authentificate user
+      const response = await logUser(userInfo.email, userInfo.password)
+      // save username in persist local storage (or empty string if "Remember me" is not checked)
+      dispatch(credentialSlice.actions.setUserName(userInfo.remember))
+      return response
     } catch (error) {
       // returns custom error message based on API response's status
       if (error.response && error.response.data.status === 400) {
@@ -76,8 +78,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     // Action to set auth state when authUser Thunk promise resolves successfully
     builder.addCase(authUser.fulfilled, (state, action) => {
-      state.userToken = action.payload.token
-      state.userName = action.payload.remember
+      state.userToken = action.payload
       state.error = ''
       state.success = true
       state.loading = false

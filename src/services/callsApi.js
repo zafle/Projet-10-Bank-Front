@@ -5,16 +5,14 @@ const API_URL = 'http://localhost:3001/api/v1/'
 /**
  * Async function to construct Axios POST API call to authentificate user
  *
- * @param {Object} userInfo contains data from sign up form
- * @param {string} userInfo.userName username
- * @param {string} userInfo.password password
- * @param {string} userInfo.remember username | '' (empty if "Remember me" is not checked)
+ * @param {string} userEmail username
+ * @param {string} userPassword password
  *
  * @returns {Promise}
  * @returns {Promise.resolve<string>} JWT
  * @returns {Promise.reject<Error>} Axios error
  */
-export async function logUser(userInfo) {
+export async function logUser(userEmail, userPassword) {
   const config = {
     headers: {
       Accept: 'application/json',
@@ -24,8 +22,8 @@ export async function logUser(userInfo) {
   const response = await axios.post(
     `${API_URL}user/login`,
     {
-      email: userInfo.email,
-      password: userInfo.password,
+      email: userEmail,
+      password: userPassword,
     },
     config
   )

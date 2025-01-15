@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router'
-import { useEffect } from 'react'
-import { getAuthState } from '../../redux/selectors'
-import { authUser, authSlice } from '../../redux/features/authSlice'
-import { credentialSlice } from '../../redux/features/credentialSlice'
+import { getAuthState, getCredentialState } from '../../redux/selectors'
+import { authSlice } from '../../redux/features/authSlice'
 import Loader from '../../components/loader/Loader'
+import { login } from '../../services/login'
 import './Login.css'
 
 /**
@@ -13,11 +11,11 @@ import './Login.css'
  * @returns {React.ReactElement} Returns Login page content
  */
 function Login() {
+  // Retrieve state values
+  const { loading, error } = useSelector(getAuthState)
+  const { userName } = useSelector(getCredentialState)
 
-  // Retrieves some auth state values
-  const { loading, error, success, userName } = useSelector(getAuthState)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   // Handles sign up submission form
   const handleSubmit = (e) => {
@@ -28,30 +26,17 @@ function Login() {
 
     // If all fields are filled in
     if (username !== '' && password !== '') {
-      dispatch(authSlice.actions.setFormError(''))
-      dispatch(authSlice.actions.setLoading(true))
-      // uses authUser Async Thunk
-      dispatch(
-        authUser({
-          email: username,
-          password: password,
-          remember: remember ? username : '',
-        })
-      )
+      const userInfo = {
+        email: username,
+        password: password,
+        remember: remember ? username : '',
+      }
+      login(dispatch, userInfo)
+
     } else {
       dispatch(authSlice.actions.setFormError('Please fill in all fields.'))
     }
   }
-
-  // If user has logged in successfully
-  useEffect(() => {
-    if (success) {
-      // set username into state (persists in local storage)
-      userName !== '' && dispatch(credentialSlice.actions.setUserName(userName))
-      // Navigate to profile page
-      navigate('/profile', { replace: true })
-    }
-  }, [success, userName, navigate, dispatch])
 
   if (loading) {
     return <Loader />
