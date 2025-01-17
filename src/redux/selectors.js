@@ -8,7 +8,6 @@
  *  userToken: string | '',
  *  error: string | '',
  *  success: boolean,
- *  remember: string | '',
  * >} Returns user authentification state
  */
 export const getAuthState = (state) => state.auth
@@ -34,4 +33,13 @@ export const getAuthState = (state) => state.auth
  */
 export const getUserState = (state) => state.user
 
+/**
+ * Returns user credential state
+ *
+ * @param {Object} state Redux store
+ *
+ * @returns {Object.<
+ *  userName: string | '',
+ * >} Returns user credential state
+ */
 export const getCredentialState = (state) => state.credential

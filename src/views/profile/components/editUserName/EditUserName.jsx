@@ -20,11 +20,12 @@ function EditUserName() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  // If the update is a success, return to profile page
+  // If the update is a success
   useEffect(() => {
     if (update.success) {
       // reset success state
       dispatch(userSlice.actions.setUpdateSuccess(false))
+      // return to profile page (displays UserName Outlet)
       navigate('/profile', { replace: true })
     }
   }, [update, dispatch, navigate])
