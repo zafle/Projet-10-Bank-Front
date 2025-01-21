@@ -46,7 +46,7 @@ function Header() {
           </Link>
         </div>
       ) : (
-        // If user is not authentofied
+        // If user is not authentified
         // - displays link to Sign up
         <div>
           <NavLink className="main-nav-item" to="/login">

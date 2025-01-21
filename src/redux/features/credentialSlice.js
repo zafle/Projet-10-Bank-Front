@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 /**
  * User credentials Slice of Redux Store
+ * Username to remember if "Remember Me" is checked when user logs in.
  * - initial state,
  * - Reducer
  */
